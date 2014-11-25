@@ -1,0 +1,5 @@
+# Crear tabla
+php artisan migrate:make create_users_table
+
+# Crear los datos
+php artisan migrate
