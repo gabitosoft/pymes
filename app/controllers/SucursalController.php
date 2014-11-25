@@ -10,6 +10,7 @@ public function mostrarSucursal()
     public function guardarSucursal()
     {
         $tipo_sucursal = new TipoSucursal(array('nombre_tipos_sucursales' => 'almacen'));
+        $tipo_sucursal = new TipoSucursal
         //$tipo_sucursal->id = '1';
         //$tipo_sucursal->nombre_tipos_sucursales ='almacen';
         
@@ -18,8 +19,9 @@ public function mostrarSucursal()
         $sucursal->direccion_sucursal ='av suecia';
         $sucursal->telefono_sucursal = 123456;
         $sucursal->numero_sucursal = 1;
-        $sucursal->tipoSucursal()->save($tipo_sucursal);
         $sucursal->timestamps=false;
+        
+        $sucursal->tipoSucursal()->save($tipo_sucursal);
         $sucursal->save();
         
     }
