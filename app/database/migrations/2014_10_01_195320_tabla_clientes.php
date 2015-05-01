@@ -15,8 +15,8 @@ class TablaClientes extends Migration {
       Schema::create('clientes',function($table)
       {                
 		$table->increments('id');
-        $table->string('nombre_clientes');
-        $table->integer('ci_clientes');
+        $table->string('nombre_cliente');
+        $table->integer('ci_cliente');
 	  });
     }
 

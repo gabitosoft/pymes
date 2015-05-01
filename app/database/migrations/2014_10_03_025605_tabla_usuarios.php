@@ -15,12 +15,15 @@ class TablaUsuarios extends Migration {
 		 Schema::create('usuarios',function($table)
       {                
 		$table->increments('id');
-        $table->string('nombre_usuarios');
-        $table->string('login_usuarios');
-        $table->string('passsword_usuarios');  
-        $table->integer('ci_usuarios');
-        $table->integer('telefono_usuarios');
-       
+        $table->string('nombre_usuario');
+        $table->string('apellido_usuario');
+        $table->string('login_usuario');
+        $table->string('password_usuario');  
+        $table->integer('ci_usuario');
+        $table->integer('telefono_usuario');
+        
+        $table->integer('id_tipo_usuario')->unsigned();
+        $table->foreign('id_tipo_usuario')->references('id')->on('tipo_usuarios');
 	  });
 	}
 

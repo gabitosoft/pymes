@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TablaTiposSucursales extends Migration {
+class TipoUsuarios extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,11 @@ class TablaTiposSucursales extends Migration {
 	 */
 	public function up()
 	{
-		
-      Schema::create('tipos_sucursales',function($table)
-      {                
-		$table->increments('id');
-        $table->string('nombre_tipo_sucursal');
-        
-	  });
+		Schema::create('tipo_usuarios',function($table)
+        {                
+          $table->increments('id');
+          $table->string('tipo_usuario');
+	   });
 	}
 
 	/**
@@ -28,7 +26,7 @@ class TablaTiposSucursales extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('tipos_sucursales');
+		Schema::dropIfExists('tipo_usuarios');
 	}
 
 }

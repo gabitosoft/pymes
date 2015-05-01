@@ -16,8 +16,8 @@ class TablaDetalles extends Migration {
       Schema::create('detalles',function($table)
       {                
 		$table->increments('id');
-        $table->datetime('fecha_venc_detalles');
-        $table->datetime('fecha_elab_detalles');
+        $table->datetime('fecha_venc_detalle');
+        $table->datetime('fecha_elab_detalle');
         
 	  });
 	}

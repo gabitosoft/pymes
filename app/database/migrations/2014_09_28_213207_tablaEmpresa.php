@@ -15,9 +15,9 @@ class TablaEmpresa extends Migration {
 		Schema::create('empresas', function($table){
         
             $table->increments('id');
-            $table->string('nombre_empresas');
-            $table->integer('telefono_empresas');
-            $table->string('direccion_empresas');
+            $table->string('nombre_empresa');
+            $table->integer('telefono_empresa');
+            $table->string('direccion_empresa');
             
         });
 	}

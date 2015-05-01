@@ -24,7 +24,7 @@ Route::delete('clientes/{id}', 'ClienteController@borrarCliente');
 Route::put('clientes/{id}', 'ClienteController@modificarCliente');
 
 //routes usuarios
-Route:: get('usuarios', 'UsuarioController@mostrarUsuario');
+Route:: get('usuarios', 'UsuarioController@mostrarUsuarios');
 Route:: post('usuarios', 'UsuarioController@guardarUsuario');
 Route:: delete('usuarios', 'UsuarioController@borrarUsuario');
 Route:: put('usuarios', 'UsuarioController@modificarUsuario');

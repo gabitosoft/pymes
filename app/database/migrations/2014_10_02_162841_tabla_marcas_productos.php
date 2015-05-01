@@ -16,7 +16,7 @@ class TablaMarcasProductos extends Migration {
       Schema::create('marcas_productos',function($table)
       {                
 		$table->increments('id');
-        $table->string('nombre_marcas_productos');
+        $table->string('nombre_marca_producto');
 	  });
 	}
 

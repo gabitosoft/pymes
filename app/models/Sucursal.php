@@ -6,5 +6,6 @@ class Sucursal extends Eloquent {
     public function tipoSucursal() {
     
         return $this->hasOne('TipoSucursal');
+        //return $this->hasOne('TipoSucursal', 'tipo_sucursal_id');
     }
 }

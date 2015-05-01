@@ -1,16 +1,16 @@
 <?php
-class UsuarioController extends BaseController {
+class ProductoController extends BaseController {
 
   /*
-  * Description: Mostrar la lista de todos los usuarios registrados
+  * Description: Mostrar la lista de todos los productos registrados
   * Method: GET
   * Return: JSON
   */
-  public function mostrarUsuarios() { 
+  public function mostrarProductos() { 
     try {
     
-      $usuarios = Usuario::all();
-      return $usuarios;
+      $productos = Producto::all();
+      return $productos;
     } catch(Exception $e) {
     
       return Utils::enviarRespuesta('Exception', $e->getMessage(), 500);
@@ -18,22 +18,23 @@ class UsuarioController extends BaseController {
   }
   
   /*
-  * Description: Insertar nuevo usuario en BD
+  * Description: Insertar nuevo producto en BD
   * Method: POST
   * Return: JSON
   */
-  public function guardarUsuario() {
+  public function guardarProducto() {
     try {
     
-      $usuario = new Usuario;
+      $producto = new Producto;
 
-      if (Input::has('nombres') && Input::has('usuario') && Input::has('contrasena')) {
+      if (Input::has('codigo_producto') && Input::has('nombre_producto') &&
+          Input::has('medida_producto') && Input::has('medida_producto') && ) {
         
-        $usuario->nombre_usuarios = Input::get('nombres');
-        $usuario->apellido_usuarios = Input::get('apellidos');
-        $usuario->login_usuarios = Input::get('usuario');
-        $usuario->password_usuarios = Input::get('contrasena');
-        $usuario->tipo_usuarios = Input::get('tipo_usuarios');
+        $producto->nombre_usuarios = Input::get('nombres');
+        $producto->apellido_usuarios = Input::get('apellidos');
+        $producto->login_usuarios = Input::get('usuario');
+        $producto->password_usuarios = Input::get('contrasena');
+        $producto->tipo_usuarios = Input::get('tipo_usuarios');
         
         if (Input::has('ci')) {
         

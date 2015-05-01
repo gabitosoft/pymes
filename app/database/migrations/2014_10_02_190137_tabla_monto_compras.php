@@ -16,7 +16,7 @@ class TablaMontoCompras extends Migration {
       Schema::create('monto_compras',function($table)
       {                
 		$table->increments('id');
-        $table->datetime('fecha_monto_compras');
+        $table->datetime('fecha_monto_compra');
         
 	  });
 	}
