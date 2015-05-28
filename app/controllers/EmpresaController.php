@@ -1,30 +1,130 @@
 <?php
 class EmpresaController extends BaseController{
-public function mostrarEmpresa()
- { 
-   $empresa = Empresa::all();
-    return $empresa;
- }
+
+  /*
+  * Description: Mostrar la lista de todas las empresas registradas
+  * Method: GET
+  * Return: JSON
+  */
+  public function mostrarEmpresas() { 
+    try {
     
-    public function guardarEmpresa()
-    {
-        $empresa =new Empresa;
-        $empresa->nombre_empresas ='cosbell';
-        $empresa->timestamps=false;
+      $empresas = Empresa::all();
+      return $empresas;
+    } catch(Exception $e) {
+    
+      return Utils::enviarRespuesta('Exception', $e->getMessage(), 500);
+    }
+  }
+    
+  /*
+  * Description: Insertar nueva empresa en BD
+  * Method: POST
+  * Return: JSON
+  */
+  public function guardarEmpresa() {
+    try {
+    
+      $empresa = new Empresa;
+
+      if (Input::has('nombre') && Input::has('telefono') && Input::has('direccion') ) {
+        
+        $empresa->nombre_empresa = Input::get('nombre');
+        $empresa->telefono_empresa = Input::get('telefono');
+        $empresa->direccion_empresa = Input::get('direccion');
+
+        $empresa-> timestamps = false;
         $empresa->save();
         
+        return $empresa;
+
+      } else {
+      
+        $mensaje = 'Los campos \'nombre\', \'direccion\' y \'telefono\' son requeridos.';
+        return Utils::enviarRespuesta('Datos incompletos', $mensaje, 500);
+      }
+    } catch(Exception $e) {
+      
+      return Utils::enviarRespuesta('Error', $e->getMessage(), 500);
     }
-    public function borrarEmpresa()
-    {
-       $empresa = Empresa::find(4);
-       $empresa->delete();
-    }
+  }
+  
+  /*
+  * Description: Mostrar informacion de una empresa especifica
+  * Method: POST
+  * Return: JSON
+  */
+  public function mostrarEmpresa() {
+
+    try {
     
-   public function modificarEmpresa()
-    {
-        $empresa = Empresa::find(5);
-        $empresa ->nombre_empresas = 'unilever';
+      if (Input::has('id')) {
+      
+        $empresa = Empresa::findOrFail(Input::get('id'));
+        return $empresa;
+      }
+    } catch(Exception $e) {
+    
+      return Utils::enviarRespuesta('Exception', $e->getMessage(), 500);
+    }
+  }
+
+  /*
+  * Description: Eliminar una empresa de BD
+  * Method: DELETE
+  * Return: JSON
+  */
+  public function borrarEmpresa() {
+
+    try {
+    
+      if (Input::has('id')) {
+    
+        $empresa = Empresa::findOrFail(Input::get('id'));
+
+        $empresa->delete();
+      
+        $mensaje = 'Empresa con ID: '.Input::get('id').' eliminada';
+        return Utils::enviarRespuesta('OK', $mensaje, 200);
+      } else {
+      
+        $mensaje = 'El campo \'id\' es requerido.';
+        return Utils::enviarRespuesta('Datos incompletos', $mensaje, 406);
+      }
+    } catch(Exception $e) {
+    
+      return Utils::enviarRespuesta('Error', $e->getMessage(), 500);
+    }
+  }
+    
+  /*
+  * Description: Modificar una empresa de BD
+  * Method: PUT
+  * Return: JSON
+  */
+  public function modificarEmpresa() {
+    try {
+    
+      if (Input::has('id')) {
+    
+        $empresa = Empresa::findOrFail(Input::get('id'));
+
+        $empresa->nombre_empresa = Input::get('nombre', $empresa->nombre_empresa);
+        $empresa->direccion_empresa = Input::get('direccion', $empresa->direccion_empresa);
+        $empresa->telefono_empresa = Input::get('telefono', $empresa->telefono_empresa);
+
         $empresa->timestamps = false;
         $empresa-> save();
+
+        return $empresa;
+      } else {
+      
+        $mensaje = 'El campo \'id\' es requerido.';
+        return Utils::enviarRespuesta('Datos incompletos', $mensaje, 406);
+      }
+    } catch (Exception $e) {
+    
+      return Utils::enviarRespuesta('Error', $e->getMessage(), 500);
     }
+  }
 }

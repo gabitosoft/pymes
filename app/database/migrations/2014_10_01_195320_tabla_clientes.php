@@ -10,24 +10,22 @@ class TablaClientes extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up()
-	{
-      Schema::create('clientes',function($table)
-      {                
-		$table->increments('id');
-        $table->string('nombre_cliente');
-        $table->integer('ci_cliente');
+	public function up() {
+          
+          Schema::create('clientes',function($table) {                
+            $table->increments('id');
+            $table->string('nombre_cliente');
+            $table->integer('ci_cliente');
 	  });
-    }
+        }
 
 	/**
 	 * Reverse the migrations.
 	 *
 	 * @return void
 	 */
-	public function down()
-	{
-		Schema::dropIfExists('clientes');
-	}
+	public function down() {
 
+          Schema::dropIfExists('clientes');
+	}
 }

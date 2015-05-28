@@ -1,45 +1,137 @@
 <?php
 class SucursalController extends BaseController{
-public function mostrarSucursal()
- { 
-   $sucursal = Sucursal::all();
-    return $sucursal;
-    
- }
-    
-    public function guardarSucursal()
-    {
-        //$tipo_sucursal = new TipoSucursal(array('nombre_tipos_sucursales' => 'almacen'));
-        $tipoSucursal =new TipoSucursal;
-        $tipoSucursal->nombre_tipos_sucursales ='romero';
-        $tipoSucursal->timestamps=false;
-        $tipoSucursal->save();
-        
-        $sucursal = new Sucursal;
-        $sucursal->direccion_sucursal ='av suecia';
-        $sucursal->telefono_sucursal = 123456;
-        $sucursal->numero_sucursal = 1;
-        $sucursal->tipo_sucursal_id = $tipoSucursal->id;
-        $sucursal->timestamps=false;
-        //$sucursal->tipoSucursal()->save($tipoSucursal);
-        $sucursal->save();
-    }
 
-    public function borrarSucursal()
-    {
-       $sucursal = Sucursal::find();
-       $sucursal->delete();
-    }
+  /*
+  * Description: Mostrar la lista de todas los sucursales registradas
+  * Method: GET
+  * Return: JSON
+  */
+  public function mostrarSucursales() { 
+    try {
     
-   public function modificarSucursal()
-    {
-        $sucursal = Sucursal::find();
-        $sucursal ->direccion_sucursal = 'paisaje';
-        $sucursal->telefono_sucursal = 546575;
-        $sucursal->numero_sucursal = 2;
+      $sucursales = Sucursal::all();
+      return $sucursales;
+    } catch(Exception $e) {
+    
+      return Utils::enviarRespuesta('Exception', $e->getMessage(), 500);
+    }
+  }
+
+  /*
+  * Description: Insertar nueva sucursal en BD
+  * Method: POST
+  * Return: JSON
+  */
+  public function guardarSucursal() {
+    try {
+
+      $sucursal = new Sucursal;
+
+      if (Input::has('direccion_sucursal') && Input::has('numero_sucursal') ) {
+        
+        $sucursal->direccion_sucursal = Input::get('direccion_sucursal');
+        $sucursal->numero_sucursal = Input::get('numero_sucursal');
+        $tipo = TipoSucursal::findOrFail(Input::get('id_tipo_sucursal'));
+        $sucursal->id_tipo_sucursal = $tipo->id;
+        
+        //Columnas opcionales, si no existe dato, seran 0
+        $sucursal->telefono_sucursal = Input::get('telefono_sucursal', 0);
+
+        $sucursal-> timestamps = false;
+        $sucursal->save();
+        
+        return $sucursal;
+
+      } else {
+      
+        $mensaje = 'Los campos \'direccion sucursal\' y \'numero sucursal\' son requeridos.';
+        return Utils::enviarRespuesta('Datos incompletos', $mensaje, 500);
+      }
+    } catch(Exception $e) {
+      
+      return Utils::enviarRespuesta('Error', $e->getMessage(), 500);
+    }
+  }
+  
+  /*
+  * Description: Mostrar informacion de una sucursal especifica
+  * Method: POST
+  * Return: JSON
+  */
+  public function mostrarSucursal() {
+  
+    try {
+    
+      if (Input::has('id')) {
+      
+        $sucursal = Sucursal::findOrFail(Input::get('id'));
+        return $sucursal;
+      }
+    } catch(Exception $e) {
+    
+      return Utils::enviarRespuesta('Exception', $e->getMessage(), 500);
+    }
+  }
+
+  /*
+  * Description: Eliminar una sucursal de BD
+  * Method: DELETE
+  * Return: JSON
+  */
+  public function borrarSucursal() {
+    
+    try {
+    
+      if (Input::has('id')) {
+    
+        $sucursal = Sucursal::findOrFail(Input::get('id'));
+
+        $sucursal->delete();
+      
+        $mensaje = 'Sucursal con ID: '.Input::get('id').' eliminada';
+        return Utils::enviarRespuesta('OK', $mensaje, 200);
+      } else {
+      
+        $mensaje = 'El campo \'id\' es requerido.';
+        return Utils::enviarRespuesta('Datos incompletos', $mensaje, 406);
+      }
+    } catch(Exception $e) {
+    
+      return Utils::enviarRespuesta('Error', $e->getMessage(), 500);
+    }
+  }
+    
+  /*
+  * Description: Modificar una sucursal de BD
+  * Method: PUT
+  * Return: JSON
+  */
+  public function modificarSucursal() {
+    try {
+
+      if (Input::has('id')) {
+    
+        $sucursal = Sucursal::findOrFail(Input::get('id'));
+
+        $sucursal->direccion_sucursal = Input::get('direccion_sucursal', $sucursal->direccion_sucursal);
+        $sucursal->numero_sucursal = Input::get('numero_sucursal', $sucursal->numero_sucursal);
+        $sucursal->telefono_sucursal = Input::get('telefono_sucursal', $sucursal->telefono_sucursal);
+        $sucursal->id_tipo_sucursal = Input::get('id_tipo_sucursal', $sucursal->id_tipo_sucursal);
+
         $sucursal->timestamps = false;
         $sucursal-> save();
+
+        return $sucursal;
+      } else {
+      
+        $mensaje = 'El campo \'id\' es requerido.';
+        return Utils::enviarRespuesta('Datos incompletos', $mensaje, 406);
+      }
+    } catch (Exception $e) {
+    
+      return Utils::enviarRespuesta('Error', $e->getMessage(), 500);
     }
+  }
 }
 
 

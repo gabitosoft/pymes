@@ -5,30 +5,23 @@ use Illuminate\Database\Migrations\Migration;
 
 class TablaMontoCompras extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		
-      Schema::create('monto_compras',function($table)
-      {                
-		$table->increments('id');
-        $table->datetime('fecha_monto_compra');
-        
-	  });
-	}
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up() {
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
+    //
+  }
+
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down() {
+
     Schema::dropIfExists('monto_compras');
-	}
-
+  }
 }
