@@ -32,9 +32,14 @@ class TablaProductos extends Migration {
 	 *
 	 * @return void
 	 */
-	public function down()
-	{
-		Schema::dropIfExists('productos');
+	public function down() {
+	
+      Schema::dropIfExists('ventas_productos');
+      Schema::dropIfExists('sucursales_productos');
+      Schema::dropIfExists('detalles_productos');
+      Schema::dropIfExists('empresas_productos');
+
+      Schema::dropIfExists('productos');
 	}
 
 }
