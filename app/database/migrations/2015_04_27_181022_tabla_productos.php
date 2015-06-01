@@ -23,7 +23,7 @@ class TablaProductos extends Migration {
           $table->float('precio_venta_producto');
 
           $table->integer('id_marca_producto')->unsigned();
-          $table->foreign('id_marca_producto')->references('id')->on('marcas_productos');
+          $table->foreign('id_marca_producto')->references('id')->on('marcas_productos')->onDelete('cascade');
         });
 	}
 

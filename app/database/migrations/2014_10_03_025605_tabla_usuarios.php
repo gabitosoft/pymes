@@ -21,7 +21,7 @@ class TablaUsuarios extends Migration {
         $table->integer('telefono_usuario');
 
         $table->integer('id_tipo_usuario')->unsigned();
-        $table->foreign('id_tipo_usuario')->references('id')->on('tipos_usuarios');
+        $table->foreign('id_tipo_usuario')->references('id')->on('tipos_usuarios')->onDelete('cascade');
       });
   }
 

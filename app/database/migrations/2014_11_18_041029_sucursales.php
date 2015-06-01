@@ -19,7 +19,7 @@ class Sucursales extends Migration {
         $table->string('telefono_sucursal');
         $table->integer('numero_sucursal');
         $table->integer('id_tipo_sucursal')->unsigned();
-        $table->foreign('id_tipo_sucursal')->references('id')->on('tipos_sucursales');
+        $table->foreign('id_tipo_sucursal')->references('id')->on('tipos_sucursales')->onDelete('cascade');
     });
   }
 
