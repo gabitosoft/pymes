@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="navbar-header">
+    <div id="dl-menu" class="dl-menuwrapper">
+     <button class="dl-trigger">Open Menu</button>
+     <ul class="dl-menu">
+        <li>
+          <a href="#">Productos</a>
+          <ul class="dl-submenu">
+            <li><a href="#" onclick="activarItem('producto/registrarProducto.html');">Registrar</a></li>
+            <li><a href="#" onclick="activarItem('producto/listarProducto.html');">Listar</a></li>
+            <li><a href="#" onclick="activarItem('producto/buscarProducto.html');">Buscar</a></li>
+            <li>
+              <a href="#">Reportes</a>
+              <ul class="dl-submenu">
+                  <li><a href="#">Productos Vendidos</a></li>
+                  <li><a href="#">Productos Comprados</a></li>
+                  <li><a href="#">Productos Vencidos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Usuarios</a>
+          <ul class="dl-submenu">
+            <li><a href="#" onclick="activarItem('usuario/registrarUsuarios.html');">Registrar</a></li>
+            <li><a href="#" onclick="activarItem('usuario/listarUsuarios.html');">Listar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Ventas</a>
+          <ul class="dl-submenu">
+            <li><a href="#" onclick="activarItem('venta/ventas.html');">Registrar</a></li>
+              <li><a href="#" id="listarVenta">Listar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="·">Carrito</a>
+          <ul class="dl-submenu">
+              <li><a href="#">Mostrar</a></li>
+            
+          </ul>
+        </li>
+     </ul>
+    </div><!-- /dl-menuwrapper --> 
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav nav-menu-left">
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Compras</a></li>
+      <li><a href="#">Ventas</a></li>
+      <li><a href="#">Sincronizar</a></li>
+      <li><a href="#">Salir</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+
+<script>
+  // Activamos el boton menu
+  $( '#dl-menu' ).dlmenu({animationClasses : { classin : 'dl-animate-in-5', classout : 'dl-animate-out-5' }});
+</script>
