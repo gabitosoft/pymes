@@ -12,7 +12,7 @@
 */
 Route::get('/', 'Bienvenido a PyMES API :D');
 //routes empresas
-Route::get('empresas', 'EmpresaController@mostrarEmpresa');
+Route::get('empresas', 'EmpresaController@mostrarEmpresas');
 Route::post('empresas', 'EmpresaController@guardarEmpresa');
 Route::delete('empresas', 'EmpresaController@borrarEmpresa');
 Route::put('empresas', 'EmpresaController@modificarEmpresa');
