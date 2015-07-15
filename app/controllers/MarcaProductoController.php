@@ -1,10 +1,22 @@
 <?php
 class MarcaProductoController extends BaseController {
-public function mostrarMarcaProducto() { 
+
+  public function mostrarMarcasProductos() { 
    
-  $marcaProd = MarcaProducto::all();
-  return $marcaProd;
- }
+    $marcasProd = MarcaProducto::all();
+    return $marcasProd;
+  }
+
+  public function mostrarMarcaProducto($id) { 
+   
+    $marcaProducto = new MarcaProducto;
+    if (isset($id)) {
+      
+      $marcaProducto = MarcaProducto::findOrFail($id);
+    }
+
+    return $marcaProducto;
+  }
     
   public function guardarMarcaProducto() {
     
@@ -78,3 +90,4 @@ public function mostrarMarcaProducto() {
       }
     }
 }
+

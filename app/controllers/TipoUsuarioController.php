@@ -48,15 +48,18 @@ class TipoUsuarioController extends BaseController {
   * Method: GET
   * Return: JSON
   */
-  public function mostrarTipoUsuario() {
+  public function mostrarTipoUsuario($id) {
   
     try {
-    
-      if (Input::has('id')) {
       
-        $tipo_usuario = TipoUsuario::findOrFail(Input::get('id'));
-        return $tipo_usuario;
+      $tipoUsuario = new TipoUsuario;
+      if (isset($id)) {
+
+        $tipoUsuario = TipoUsuario::findOrFail($id);
       }
+
+      return $tipoUsuario;
+
     } catch(Exception $e) {
     
       return Utils::enviarRespuesta('Exception', $e->getMessage(), 500);

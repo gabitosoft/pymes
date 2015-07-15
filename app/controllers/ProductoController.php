@@ -22,13 +22,13 @@ class ProductoController extends BaseController {
   * Method: GET
   * Return: JSON
   */
-  public function mostrarProducto() {
+  public function mostrarProducto($id) {
   
     try {
     
-      if (Input::has('id')) {
+      if (isset($id)) {
       
-        $producto = Producto::findOrFail(Input::get('id'));
+        $producto = Producto::findOrFail($id);
         return $producto;
       }
     } catch(Exception $e) {

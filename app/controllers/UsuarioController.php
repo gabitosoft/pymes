@@ -92,16 +92,16 @@ class UsuarioController extends BaseController {
   
   /*
   * Description: Mostrar informacion de un usuario especifico
-  * Method: POST
+  * Method: GET
   * Return: JSON
   */
-  public function mostrarUsuario() {
+  public function mostrarUsuario($id) {
   
     try {
     
-      if (Input::has('id')) {
+      if (isset($id)) {
       
-        $usuario = Usuario::findOrFail(Input::get('id'));
+        $usuario = Usuario::findOrFail($id);
         return $usuario;
       }
     } catch(Exception $e) {
